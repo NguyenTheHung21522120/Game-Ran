@@ -45,6 +45,11 @@ void genApple()
 	gotoxy(x, y);
 	cout << "\033[1;31m" << APPLE << "\033[0m";
 }
+//An Tao
+bool isAteApple()
+{
+	return snake[0].x == apple.x && snake[0].y == apple.y;
+}
 
 Direction direction = Direction::right;
 Point prevTail;
