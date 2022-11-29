@@ -57,6 +57,7 @@ void displayScore()
 	cout << "DIEM: " << score;
 }
 
+
 Direction direction = Direction::right;
 Point prevTail;
 
@@ -67,25 +68,20 @@ void ShowConsoleCursor(bool);
 void move();
 
 void drawHeadnTail();
-
-
+void genApple();
+bool isAteApple();
+void growing();
+void displayScore();
 void showEndMenu();
 void startGame();
 void resetSnake();
 void showStartMenu();
-
-
-
 
 int main()
 {
 	showStartMenu();
 	return 0;
 }
-
-
-
-
 
 void startGame()
 {
@@ -115,7 +111,13 @@ void startGame()
 		
 		drawHeadnTail();//set lai ran moi
 		Sleep(1000);
-	
+	if (isAteApple())//An tao thi ran lon
+		{
+			score++;
+			displayScore();
+			growing();
+			genApple();
+		}
 	}
 }
 
@@ -169,7 +171,11 @@ void drawHeadnTail()//tao vi tri moi, xoa vi tri cu khi di chuyen
 	gotoxy(prevTail.x, prevTail.y);
 	cout << ' '; 
 }
-
+//tang chieu dai Ran
+void growing()
+{
+	snake.push_back(prevTail);
+}
 void gotoxy(int x, int y)
 {
 	COORD coord;
