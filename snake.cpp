@@ -50,6 +50,12 @@ bool isAteApple()
 {
 	return snake[0].x == apple.x && snake[0].y == apple.y;
 }
+//Tinh diem 
+void displayScore()
+{
+	gotoxy(WIDTH + 5, 2);
+	cout << "DIEM: " << score;
+}
 
 Direction direction = Direction::right;
 Point prevTail;
