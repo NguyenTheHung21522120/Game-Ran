@@ -8,7 +8,7 @@ using namespace std;
 #include <time.h>
 #define WIDTH 40
 #define HEIGHT 20 
-#define BODY '*'
+#define BODY '*' //ky tu tao dang than ran
 
 enum class Direction
 {
