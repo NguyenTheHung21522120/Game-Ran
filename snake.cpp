@@ -31,6 +31,21 @@ vector<Point> snake = {
 	Point{ WIDTH / 2 - 1, HEIGHT / 2 },
 	Point{ WIDTH / 2 - 2, HEIGHT / 2 }
 };
+
+//them tao
+void genApple()
+{
+	srand(time(0));
+	int x = rand() % (WIDTH - 1) + 1;
+	int y = rand() % (HEIGHT - 1) + 1;
+	apple = {
+		x,
+		y,
+	};
+	gotoxy(x, y);
+	cout << "\033[1;31m" << APPLE << "\033[0m";
+}
+
 Direction direction = Direction::right;
 Point prevTail;
 
