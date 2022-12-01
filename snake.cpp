@@ -47,7 +47,6 @@ void drawBox();
 void drawHeadnTail();
 bool isHitWall();
 bool isAteApple();
-
 void displayScore();
 void showEndMenu();
 void startGame();
@@ -62,7 +61,7 @@ int main()
 	showStartMenu();
 	return 0;
 }
-void drawBox()
+void drawBox() // ve khung
 {
 	for (size_t i = 0; i < WIDTH; i++)
 		cout << '=';
@@ -89,7 +88,7 @@ bool isHitWall() //dam tuong
 }
 
 
-void startGame()
+void startGame() // bat dau game
 {
 	system("cls");
 	ShowConsoleCursor(false);//An con tro chuot
@@ -122,7 +121,7 @@ void startGame()
 			score++;
 			displayScore();
 		}
-		if (isHitWall())
+		if (isHitWall())//dam tuong thi thoat
 		{
 			system("cls");
 			return;
@@ -134,6 +133,7 @@ void startGame()
 void showStartMenu()
 {
 		system("cls");
+		ShowConsoleCursor(false);//An con tro chuot
 		gotoxy(0, 3);
 		Sleep(1000);
 		for (size_t i = 3; i > 0; i--)
