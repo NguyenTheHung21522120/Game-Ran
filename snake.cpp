@@ -131,14 +131,37 @@ void startGame() // bat dau game
 				direction = Direction::down;
 			else if (ch == 'd' && direction != Direction::left)
 				direction = Direction::right;
+			else if (ch == 'u')
+			{
+				if (speed > 100)
+					speed -= 100;
+				else if (speed == 100)
+				{
+					gotoxy(WIDTH / 4 - 1, HEIGHT + 1);
+					cout << "You hav gained max level";
+					Sleep(1000);
+					gotoxy(WIDTH / 4 - 1, HEIGHT + 1);
+					cout << "\b                         ";
 
+				}
+			}
+			else if (ch == 'i')
+			{
+				if (speed < 500)
+					speed += 100;
+				else if (speed == 500)
+				{
+					gotoxy(WIDTH / 4 - 1, HEIGHT + 1);
+					cout << "You hav gained min level";
+					Sleep(1000);
+					gotoxy(WIDTH / 4 - 1, HEIGHT + 1);
+					cout << "\b                         ";
+
+				}
+			}
 		}
 		move();//di chuyen ran
-
 		drawHeadnTail();//set lai ran moi
-
-
-		Sleep(300);
 		if (isAteApple())//An tao thi ran lon
 		{
 			score++;
@@ -156,6 +179,7 @@ void startGame() // bat dau game
 			showEndMenu();
 			break;
 		}
+		Sleep(speed);
 	}
 
 }
