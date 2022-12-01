@@ -38,6 +38,7 @@ Point apple;
 Point prevTail;
 int score = 0;
 int speed = 300;
+int level;
 void drawSnakePart(Point);
 void drawSnake();
 void genApple();
@@ -54,7 +55,7 @@ void showEndMenu();
 void startGame();
 void resetSnake();
 void showStartMenu();
-
+int levelacdtospeed();
 
 
 
@@ -115,8 +116,9 @@ void startGame() // bat dau game
 	ShowConsoleCursor(false);//An con tro chuot
 	drawBox();
 	drawSnake();//ve con ran
-	genApple();
-
+	genApple(); 
+	level = levelacdtospeed();
+	displayScore();
 	while (true)//dinh nghia di chuyen ran
 	{
 		if (_kbhit())
@@ -159,6 +161,8 @@ void startGame() // bat dau game
 
 				}
 			}
+			level = levelacdtospeed();
+			displayScore();
 		}
 		move();//di chuyen ran
 		drawHeadnTail();//set lai ran moi
@@ -223,6 +227,7 @@ void showStartMenu()
 				cin >> t;
 			}
 			speed = 600 - t * 100;
+			level = speed / 100;
 			system("cls");
 			cout << "Tip: While playing game, you can press 'e' to exit";
 			gotoxy(0, 3);
@@ -353,5 +358,32 @@ void displayScore()
 	cout << "Up level : U" << endl;
 	gotoxy(WIDTH + 5, 12);
 	cout << "Down level : I" << endl;
+	gotoxy(WIDTH + 5, 15);
+	cout << "Your Level : " << level;
 }
+
+int levelacdtospeed() {
+	if (speed == 100)
+	{
+		return 5;
+
+	}
+	else if (speed == 200)
+	{
+		return 4;
+	}
+	else if (speed == 300)
+	{
+		return 3;
+	}
+	else if (speed == 400)
+	{
+		return 2;
+	}
+	else
+	{
+		return 1;
+	}
+}
+
 
