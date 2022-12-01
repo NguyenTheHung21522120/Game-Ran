@@ -10,6 +10,7 @@ using namespace std;
 #define WIDTH 40
 #define HEIGHT 20
 #define BODY '*'
+#define APPLE "0"
 
 enum class Direction
 {
@@ -33,17 +34,24 @@ vector<Point> snake = {
 	Point{ WIDTH / 2 - 2, HEIGHT / 2 }
 };
 Direction direction = Direction::right;
+Point apple;
 Point prevTail;
-
+int score = 0;
 void drawSnakePart(Point);
 void drawSnake();
+void genApple();
 void gotoxy(int, int);
 void ShowConsoleCursor(bool);
 void move();
-
+void drawBox();
 void drawHeadnTail();
+bool isBiteItself();
 
 bool isBiteItself();
+bool isHitWall();
+bool isAteApple();
+void displayScore();
+
 void showEndMenu();
 void startGame();
 void resetSnake();
@@ -57,18 +65,40 @@ int main()
 	showStartMenu();
 	return 0;
 }
+void drawBox() // ve khung
+{
+	for (size_t i = 0; i < WIDTH; i++)
+		cout << '=';
+	gotoxy(0, HEIGHT);
+	for (size_t i = 0; i < WIDTH; i++)
+		cout << '=';
+	for (size_t i = 1; i < HEIGHT; i++)
+	{
+		gotoxy(0, i);
+		cout << '|';
+	}
+	for (size_t i = 1; i < HEIGHT; i++)
+	{
+		gotoxy(WIDTH, i);
+		cout << '|';
+	}
+}
 
 
 
+bool isHitWall() //dam tuong
+{
+	return snake[0].x == 0 || snake[0].y == 0 || snake[0].x == WIDTH || snake[0].y == HEIGHT;
+}
 
 
-void startGame()
+void startGame() // bat dau game
 {
 	system("cls");
 	ShowConsoleCursor(false);//An con tro chuot
-
+	drawBox();
 	drawSnake();//ve con ran
-
+	genApple();
 
 	while (true)//dinh nghia di chuyen ran
 	{
@@ -89,15 +119,33 @@ void startGame()
 		move();//di chuyen ran
 
 		drawHeadnTail();//set lai ran moi
-		Sleep(1000);
 
+
+=======
+		Sleep(300);
+		if (isAteApple())//An tao thi ran lon
+		{
+			score++;
+			displayScore();
+		}
+		if (isHitWall())//dam tuong thi thoat
+		{
+			system("cls");
+			return;
+		}
+    if(isBiteItself())
+    {
+    	system("cls");
+			return;
+    }
 	}
-}
 
+}
 
 void showStartMenu()
 {
 		system("cls");
+		ShowConsoleCursor(false);//An con tro chuot
 		gotoxy(0, 3);
 		Sleep(1000);
 		for (size_t i = 3; i > 0; i--)
@@ -107,7 +155,9 @@ void showStartMenu()
 			Sleep(1000);
 		}
 		gotoxy(0, 3);
+		cout << "Bat dau!";
 		Sleep(1000);
+
 		startGame();
 }
 void drawSnakePart(Point p)//ve 1 diem tren than ran
@@ -172,3 +222,30 @@ void ShowConsoleCursor(bool showFlag)// an con tro chuot
 	cursorInfo.bVisible = showFlag;
 	SetConsoleCursorInfo(out, &cursorInfo);
 }
+
+
+//them tao
+void genApple()
+{
+	srand(time(0));
+	int x = rand() % (WIDTH - 1) + 1;
+	int y = rand() % (HEIGHT - 1) + 1;
+	apple = {
+		x,
+		y,
+	};
+	gotoxy(x, y);
+	cout << "\033[1;31m" << APPLE << "\033[0m";
+}
+//An Tao
+bool isAteApple()
+{
+	return snake[0].x == apple.x && snake[0].y == apple.y;
+}
+//Tinh diem 
+void displayScore()
+{
+	gotoxy(WIDTH + 5, 2);
+	cout << "DIEM: " << score;
+}
+
