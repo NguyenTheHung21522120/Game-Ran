@@ -10,7 +10,7 @@ using namespace std;
 #define WIDTH 40
 #define HEIGHT 20 
 #define BODY '*' //ky tu tao dang than ran
-#define APPLE "0"
+#define APPLE "0" //ky tu tao hinh qua tao
 
 enum class Direction
 {
