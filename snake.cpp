@@ -121,7 +121,6 @@ void startGame() // bat dau game
 		drawHeadnTail();//set lai ran moi
 
 
-=======
 		Sleep(300);
 		if (isAteApple())//An tao thi ran lon
 		{
