@@ -46,12 +46,9 @@ void move();
 void drawBox();
 void drawHeadnTail();
 bool isBiteItself();
-
-bool isBiteItself();
 bool isHitWall();
 bool isAteApple();
 void displayScore();
-
 void showEndMenu();
 void startGame();
 void resetSnake();
@@ -91,6 +88,25 @@ bool isHitWall() //dam tuong
 	return snake[0].x == 0 || snake[0].y == 0 || snake[0].x == WIDTH || snake[0].y == HEIGHT;
 }
 
+void showEndMenu()
+{
+	system("cls");
+	gotoxy(0, 0);
+	cout << "Game over!" << endl;
+	cout << "Diem : " << score << endl;
+	cout << "ban muon choi lai khong ([y]/[n]): ";
+	char option;
+	cin >> option;
+	option = tolower(option);
+	if (option == 'y')
+	{
+		resetSnake();
+		startGame();
+	}
+	else if (option == 'n')
+		exit(1);
+
+}
 
 void startGame() // bat dau game
 {
@@ -132,13 +148,25 @@ void startGame() // bat dau game
 			system("cls");
 			return;
 		}
-    if(isBiteItself())
-    {
-    	system("cls");
+		if(isBiteItself())
+		{
+    		system("cls");
 			return;
-    }
+		}
 	}
 
+}
+void resetSnake()
+{
+	score = 0;
+	direction = Direction::right;
+	snake = {
+		Point{ WIDTH / 2 + 2, HEIGHT / 2 },
+		Point{ WIDTH / 2 + 1, HEIGHT / 2 },
+		Point{ WIDTH / 2, HEIGHT / 2 },
+		Point{ WIDTH / 2 - 1, HEIGHT / 2 },
+		Point{ WIDTH / 2 - 2, HEIGHT / 2 }
+	};
 }
 
 void showStartMenu()
