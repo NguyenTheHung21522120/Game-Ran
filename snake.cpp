@@ -83,7 +83,7 @@ void startGame()
 {
 	system("cls");
 	ShowConsoleCursor(false);//An con tro chuot
-
+    drawBox();
 	drawSnake();//ve con ran
 
 
