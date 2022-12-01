@@ -37,6 +37,7 @@ Direction direction = Direction::right;
 Point apple;
 Point prevTail;
 int score = 0;
+int speed = 300;
 void drawSnakePart(Point);
 void drawSnake();
 void genApple();
@@ -174,9 +175,35 @@ void resetSnake()
 void showStartMenu()
 {
 		system("cls");
-		ShowConsoleCursor(false);//An con tro chuot
-		gotoxy(0, 3);
-		Sleep(1000);
+		cout << "Welcome to snake game!" << endl;
+		cout << "Team : 5 Anh em sieu nhan " << endl;
+		cout << "  ==============" << endl;
+		cout << "Menu :" << endl;
+	black:
+		cout << "1. Start" << endl;
+		cout << "2. Exit" << endl;
+		cout << "Your choice: ";
+		int option;
+		cin >> option;
+
+		if (option == 1)
+		{
+			system("cls");
+			cout << "Choose your level (1 - 5): ";
+			int t;
+			cin >> t;
+			while (t < 1 || t > 5)
+			{
+				system("cls");
+				cout << "Your level is not exsist !! Choose again (1 - 5) : ";
+				cin >> t;
+			}
+			speed = 600 - t * 100;
+			system("cls");
+			cout << "Tip: While playing game, you can press 'e' to exit";
+			gotoxy(0, 3);
+			cout << "Ready!";
+			Sleep(1000);
 		for (size_t i = 3; i > 0; i--)
 		{
 			gotoxy(0, 3);
