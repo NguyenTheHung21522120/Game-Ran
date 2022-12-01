@@ -274,6 +274,24 @@ bool isAteApple()
 void displayScore()
 {
 	gotoxy(WIDTH + 5, 2);
-	cout << "DIEM: " << score;
+	cout << "Your score: " << score << endl;
+	gotoxy(WIDTH + 5, 4);
+	cout << "-- Guide --" << endl;
+	gotoxy(WIDTH + 5, 5);
+	cout << "UP : W" << endl;
+	gotoxy(WIDTH + 5, 6);
+	cout << "DOWN : S" << endl;
+	gotoxy(WIDTH + 5, 7);
+	cout << "LEFT : A" << endl;
+	gotoxy(WIDTH + 5, 8);
+	cout << "RIGHT : D" << endl;
+	gotoxy(WIDTH + 5, 9);
+	cout << "-- Option --" << endl;
+	gotoxy(WIDTH + 5, 10);
+	cout << "EXIT : E" << endl;
+	gotoxy(WIDTH + 5, 11);
+	cout << "Up level : U" << endl;
+	gotoxy(WIDTH + 5, 12);
+	cout << "Down level : I" << endl;
 }
 
