@@ -228,16 +228,25 @@ void showStartMenu()
 			gotoxy(0, 3);
 			cout << "Ready!";
 			Sleep(1000);
-		for (size_t i = 3; i > 0; i--)
-		{
+			for (size_t i = 3; i > 0; i--)
+			{
+				gotoxy(0, 3);
+				cout << i << "         ";
+				Sleep(1000);
+			}
 			gotoxy(0, 3);
-			cout << i << "         ";
+			cout << "Bat dau!";
 			Sleep(1000);
+			startGame();
 		}
-		gotoxy(0, 3);
-		cout << "Bat dau!";
-		Sleep(1000);
-		startGame();
+		else if (option == 2)
+			exit(1);
+		else
+		{
+			system("cls");
+			cout << "Khong ton tai lua chon nay`. Vui long nhap lai !!" << endl;
+			goto black;
+		}
 }
 void drawSnakePart(Point p)//ve 1 diem tren than ran
 {
