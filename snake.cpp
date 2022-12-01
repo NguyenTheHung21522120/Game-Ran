@@ -43,7 +43,7 @@ void move();
 
 void drawHeadnTail();
 
-
+bool isBiteItself();
 void showEndMenu();
 void startGame();
 void resetSnake();
