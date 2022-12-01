@@ -45,7 +45,9 @@ void ShowConsoleCursor(bool);
 void move();
 void drawBox();
 void drawHeadnTail();
+bool isHitWall();
 bool isAteApple();
+
 void displayScore();
 void showEndMenu();
 void startGame();
@@ -81,6 +83,10 @@ void drawBox()
 
 
 
+bool isHitWall() //dam tuong
+{
+	return snake[0].x == 0 || snake[0].y == 0 || snake[0].x == WIDTH || snake[0].y == HEIGHT;
+}
 
 
 void startGame()
@@ -110,13 +116,19 @@ void startGame()
 		move();//di chuyen ran
 
 		drawHeadnTail();//set lai ran moi
-		Sleep(1000);
+		Sleep(300);
 		if (isAteApple())//An tao thi ran lon
 		{
 			score++;
 			displayScore();
 		}
+		if (isHitWall())
+		{
+			system("cls");
+			return;
+		}
 	}
+
 }
 
 void showStartMenu()
