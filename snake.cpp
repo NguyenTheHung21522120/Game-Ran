@@ -145,13 +145,15 @@ void startGame() // bat dau game
 		}
 		if (isHitWall())//dam tuong thi thoat
 		{
-			system("cls");
-			return;
+			ShowConsoleCursor(true);
+			showEndMenu();
+			break;
 		}
 		if(isBiteItself())
 		{
-    		system("cls");
-			return;
+			ShowConsoleCursor(true);
+			showEndMenu();
+			break;
 		}
 	}
 
@@ -168,7 +170,7 @@ void resetSnake()
 		Point{ WIDTH / 2 - 2, HEIGHT / 2 }
 	};
 }
-
+	
 void showStartMenu()
 {
 		system("cls");
@@ -184,7 +186,6 @@ void showStartMenu()
 		gotoxy(0, 3);
 		cout << "Bat dau!";
 		Sleep(1000);
-
 		startGame();
 }
 void drawSnakePart(Point p)//ve 1 diem tren than ran
