@@ -39,7 +39,7 @@ void drawSnake();
 void gotoxy(int, int);
 void ShowConsoleCursor(bool);
 void move();
-
+void drawBox();
 void drawHeadnTail();
 
 
@@ -55,6 +55,24 @@ int main()
 {
 	showStartMenu();
 	return 0;
+}
+void drawBox()
+{
+	for (size_t i = 0; i < WIDTH; i++)
+		cout << '=';
+	gotoxy(0, HEIGHT);
+	for (size_t i = 0; i < WIDTH; i++)
+		cout << '=';
+	for (size_t i = 1; i < HEIGHT; i++)
+	{
+		gotoxy(0, i);
+		cout << '|';
+	}
+	for (size_t i = 1; i < HEIGHT; i++)
+	{
+		gotoxy(WIDTH, i);
+		cout << '|';
+	}
 }
 
 
