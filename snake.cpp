@@ -8,7 +8,7 @@ using namespace std;
 #include <cstring>
 #include <time.h>
 #define WIDTH 40
-#define HEIGHT 20 
+#define HEIGHT 20
 #define BODY '*'
 #define APPLE "0"
 
@@ -45,9 +45,13 @@ void ShowConsoleCursor(bool);
 void move();
 void drawBox();
 void drawHeadnTail();
+bool isBiteItself();
+
+bool isBiteItself();
 bool isHitWall();
 bool isAteApple();
 void displayScore();
+
 void showEndMenu();
 void startGame();
 void resetSnake();
@@ -115,6 +119,9 @@ void startGame() // bat dau game
 		move();//di chuyen ran
 
 		drawHeadnTail();//set lai ran moi
+
+
+=======
 		Sleep(300);
 		if (isAteApple())//An tao thi ran lon
 		{
@@ -126,6 +133,11 @@ void startGame() // bat dau game
 			system("cls");
 			return;
 		}
+    if(isBiteItself())
+    {
+    	system("cls");
+			return;
+    }
 	}
 
 }
@@ -175,12 +187,21 @@ void move()//di chuyen ran
 		snake[0].x += 1;
 }
 
+bool isBiteItself()
+{
+    Point head = snake[0];
+    for (size_t i = 1; i < snake.size(); i++)
+        if (head.x == snake [i].x && head.y == snake[i].y)
+        return true;
+    return false;
+}
+
 void drawHeadnTail()//tao vi tri moi, xoa vi tri cu khi di chuyen
 {
 	gotoxy(snake[0].x, snake[0].y);
 	cout << BODY;
 	gotoxy(prevTail.x, prevTail.y);
-	cout << ' '; 
+	cout << ' ';
 }
 
 void gotoxy(int x, int y)
@@ -201,6 +222,8 @@ void ShowConsoleCursor(bool showFlag)// an con tro chuot
 	cursorInfo.bVisible = showFlag;
 	SetConsoleCursorInfo(out, &cursorInfo);
 }
+
+
 //them tao
 void genApple()
 {
@@ -225,3 +248,4 @@ void displayScore()
 	gotoxy(WIDTH + 5, 2);
 	cout << "DIEM: " << score;
 }
+
