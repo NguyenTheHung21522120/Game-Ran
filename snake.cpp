@@ -9,8 +9,8 @@ using namespace std;
 #include <time.h>
 #define WIDTH 40
 #define HEIGHT 20
-#define BODY '*'
-#define APPLE "0"
+#define BODY 'x'
+#define APPLE "o"
 
 enum class Direction
 {
@@ -50,6 +50,7 @@ void drawHeadnTail();
 bool isBiteItself();
 bool isHitWall();
 bool isAteApple();
+void growing();
 void displayScore();
 void showEndMenu();
 void startGame();
@@ -163,6 +164,12 @@ void startGame() // bat dau game
 			}
 			level = levelacdtospeed();
 			displayScore();
+			if(ch == 'e')
+			{
+				system("cls");
+				showEndMenu();
+			 } 
+			
 		}
 		move();//di chuyen ran
 		drawHeadnTail();//set lai ran moi
@@ -170,6 +177,9 @@ void startGame() // bat dau game
 		{
 			score++;
 			displayScore();
+			growing();
+			genApple();
+			
 		}
 		if (isHitWall())//dam tuong thi thoat
 		{
@@ -177,7 +187,7 @@ void startGame() // bat dau game
 			showEndMenu();
 			break;
 		}
-		if(isBiteItself())
+		if(isBiteItself())// can vao nguoi thi chet
 		{
 			ShowConsoleCursor(true);
 			showEndMenu();
@@ -230,6 +240,7 @@ void showStartMenu()
 			level = speed / 100;
 			system("cls");
 			cout << "Tip: While playing game, you can press 'e' to exit";
+			ShowConsoleCursor(false);
 			gotoxy(0, 3);
 			cout << "Ready!";
 			Sleep(1000);
@@ -334,6 +345,11 @@ void genApple()
 bool isAteApple()
 {
 	return snake[0].x == apple.x && snake[0].y == apple.y;
+}
+//tang chieu dai Ran
+void growing()
+{
+	snake.push_back(prevTail);
 }
 //Tinh diem 
 void displayScore()
